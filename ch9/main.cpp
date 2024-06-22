@@ -25,31 +25,30 @@ enum class MonsterType
     Slime
 };
 
+std::string monsterTypeToString(MonsterType type)
+{
+    switch(type)
+    {
+    case MonsterType::Ogre:
+        return "Ogre";
+    case MonsterType::Dragon:
+        return "Dragon";
+    case MonsterType::Orc:
+        return "Orc";
+    case MonsterType::GiantSpider:
+        return "Giant spider";
+    case MonsterType::Slime:
+        return "Slime";
+    }
+
+    return "None";
+}
+
 struct Monster
 {
-    Monster(MonsterType type, std::string name, int health) : type(type), name(name), health(health) {}
-
     void printMonster()
     {
-        std::cout << "This ";
-
-        switch(type)
-        {
-        case MonsterType::Ogre:
-            std::cout << "Ogre"; break;
-        case MonsterType::Dragon:
-            std::cout << "Dragon"; break;
-        case MonsterType::Orc:
-            std::cout << "Orc"; break;
-        case MonsterType::GiantSpider:
-            std::cout << "Giant spider"; break;
-        case MonsterType::Slime:
-            std::cout << "Slime"; break;
-        default:
-            break;
-        }
-
-        std::cout << " is named " << name << " and has " << health << " health." << std::endl;
+        std::cout << "This " << monsterTypeToString(type) << " is named " << name << " and has " << health << " health." << std::endl;
     }
 
     MonsterType type;
@@ -59,8 +58,8 @@ struct Monster
 
 int main()
 {
-    Monster ogre(MonsterType::Ogre, "Torg", 145);
-    Monster slime(MonsterType::Slime, "Blurp", 23);
+    Monster ogre { MonsterType::Ogre, "Torg", 145 };
+    Monster slime { MonsterType::Slime, "Blurp", 23 };
 
     ogre.printMonster();
     slime.printMonster();
